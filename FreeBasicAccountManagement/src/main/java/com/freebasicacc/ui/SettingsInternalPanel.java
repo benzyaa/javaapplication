@@ -1,0 +1,325 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.freebasicacc.ui;
+
+import com.freebasicacc.action.SettingsAction;
+import com.freebasicacc.model.DisplayLang;
+import com.freebasicacc.util.DialogUtil;
+import com.freebasicacc.util.MessageUtil;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Properties;
+import java.util.logging.Level;
+import javax.swing.JComboBox;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+/**
+ *
+ * @author benzyaa
+ */
+public class SettingsInternalPanel extends javax.swing.JPanel {
+      private static transient Logger logger = LogManager.getLogger(SettingsInternalPanel.class);
+      private MainFrame mainFrame;
+    /**
+     * Creates new form SettingsInternalPanel
+     */
+    
+    public SettingsInternalPanel() {
+        initComponents();
+        this.initDisplayedLanguageCombobox();
+        this.initialConfigureValue();
+    }
+    
+    private void initDisplayedLanguageCombobox(){
+        try {
+            Map displayLangMap = new LinkedHashMap();
+            displayLangMap.put("en_US", new DisplayLang("en_US",MessageUtil.getMessage("language.en")));
+            displayLangMap.put("th_TH", new DisplayLang("th_TH",MessageUtil.getMessage("language.th")));
+            SettingsAction action = new SettingsAction();
+            Properties langProperties = SettingsAction.loadLanguageSettings();
+            DisplayLang selectedDisplayLang = (DisplayLang) displayLangMap.get(langProperties.getProperty("display_lang"));
+            action.assignComboBoxModel(displayLanguageSettingComboBox, displayLangMap,selectedDisplayLang);
+        } catch (Exception ex) {
+            logger.info("Error -",ex);
+        }
+    }
+    
+    private void initialConfigureValue(){
+        try{
+            SettingsAction action = new SettingsAction();
+            action.loadSettings(this);
+        }catch(Exception ex){
+            DialogUtil.displayErrorMessage(ex);
+            logger.info("Error -",ex);
+        }
+    }
+    
+    public void changeLanguage(String langId){
+        Locale.setDefault(new Locale(langId));
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com/freebasicacc/ui/bundle");
+        saveSettingsButton.setText(bundle.getString("common.save"));
+        cancelSettingButton.setText(bundle.getString("common.cancel")); // NOI18N
+        displayLanguageSettingLabel.setText(bundle.getString("settings.language.title")); 
+        jLabel1.setText(bundle.getString("menu.manage.settings"));
+        databaseSettingLabel.setText(bundle.getString("settings.database.title"));
+        this.getMainFrame().changeLanguage(langId);
+    }
+
+    public JTextField getMySqlHostDatabaseSettingTextField() {
+        return mySqlHostDatabaseSettingTextField;
+    }
+
+    public void setMySqlHostDatabaseSettingTextField(JTextField mySqlHostDatabaseSettingTextField) {
+        this.mySqlHostDatabaseSettingTextField = mySqlHostDatabaseSettingTextField;
+    }
+
+    public JPasswordField getMySqlPasswordDatabaseSettingTextField() {
+        return mySqlPasswordDatabaseSettingTextField;
+    }
+
+    public void setMySqlPasswordDatabaseSettingTextField(JPasswordField mySqlPasswordDatabaseSettingTextField) {
+        this.mySqlPasswordDatabaseSettingTextField = mySqlPasswordDatabaseSettingTextField;
+    }
+
+    public JTextField getMySqlUserNameDatabaseSettingTextField() {
+        return mySqlUserNameDatabaseSettingTextField;
+    }
+
+    public void setMySqlUserNameDatabaseSettingTextField(JTextField mySqlUserNameDatabaseSettingTextField) {
+        this.mySqlUserNameDatabaseSettingTextField = mySqlUserNameDatabaseSettingTextField;
+    }
+
+    public JTextField getMySqlDatabaseNameDatabaseSettingTextField() {
+        return mySqlDatabaseNameDatabaseSettingTextField;
+    }
+
+    public void setMySqlDatabaseNameDatabaseSettingTextField(JTextField mySqlDatabaseNameDatabaseSettingTextField) {
+        this.mySqlDatabaseNameDatabaseSettingTextField = mySqlDatabaseNameDatabaseSettingTextField;
+    }
+
+    public JComboBox<String> getDisplayLanguageSettingComboBox() {
+        return displayLanguageSettingComboBox;
+    }
+
+    public void setDisplayLanguageSettingComboBox(JComboBox<String> displayLanguageSettingComboBox) {
+        this.displayLanguageSettingComboBox = displayLanguageSettingComboBox;
+    }
+
+    public MainFrame getMainFrame() {
+        return mainFrame;
+    }
+
+    public void setMainFrame(MainFrame mainFrame) {
+        this.mainFrame = mainFrame;
+    }
+    
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        mySqlHostDatabaseSettingLabel = new javax.swing.JLabel();
+        mySqlHostDatabaseSettingTextField = new javax.swing.JTextField();
+        mySqlUserNameDatabaseSettingLabel = new javax.swing.JLabel();
+        mySqlUserNameDatabaseSettingTextField = new javax.swing.JTextField();
+        mySqlPasswordDatabaseSettingLabel = new javax.swing.JLabel();
+        mySqlPasswordDatabaseSettingTextField = new javax.swing.JPasswordField();
+        jSeparator1 = new javax.swing.JSeparator();
+        databaseSettingLabel = new javax.swing.JLabel();
+        saveSettingsButton = new javax.swing.JButton();
+        cancelSettingButton = new javax.swing.JButton();
+        mySqlDatabaseNameDatabaseSettingTextField = new javax.swing.JTextField();
+        mySqlDatabaseNameDatabaseSettingLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        displayLanguageSettingLabel = new javax.swing.JLabel();
+        displayLanguageSettingComboBox = new javax.swing.JComboBox<>();
+
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        mySqlHostDatabaseSettingLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        mySqlHostDatabaseSettingLabel.setText("MySQL Hostname");
+
+        mySqlUserNameDatabaseSettingLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        mySqlUserNameDatabaseSettingLabel.setText("UserName");
+
+        mySqlUserNameDatabaseSettingTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mySqlUserNameDatabaseSettingTextFieldActionPerformed(evt);
+            }
+        });
+
+        mySqlPasswordDatabaseSettingLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        mySqlPasswordDatabaseSettingLabel.setText("Password");
+
+        databaseSettingLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("com/freebasicacc/ui/bundle"); // NOI18N
+        databaseSettingLabel.setText(bundle.getString("settings.database.title")); // NOI18N
+
+        saveSettingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/freebasicacc/ui/image/22.png"))); // NOI18N
+        saveSettingsButton.setText(bundle.getString("common.save")); // NOI18N
+        saveSettingsButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveSettingsButtonMouseClicked(evt);
+            }
+        });
+
+        cancelSettingButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/freebasicacc/ui/image/33.png"))); // NOI18N
+        cancelSettingButton.setText(bundle.getString("common.cancel")); // NOI18N
+
+        mySqlDatabaseNameDatabaseSettingTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mySqlDatabaseNameDatabaseSettingTextFieldActionPerformed(evt);
+            }
+        });
+
+        mySqlDatabaseNameDatabaseSettingLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        mySqlDatabaseNameDatabaseSettingLabel.setText("Database Name");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/freebasicacc/ui/image/tools6464.png"))); // NOI18N
+        jLabel1.setText(bundle.getString("menu.manage.settings")); // NOI18N
+
+        displayLanguageSettingLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        displayLanguageSettingLabel.setText(bundle.getString("settings.language.title")); // NOI18N
+
+        displayLanguageSettingComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(saveSettingsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cancelSettingButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(databaseSettingLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(246, 246, 246))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(mySqlHostDatabaseSettingLabel)
+                                            .addComponent(mySqlDatabaseNameDatabaseSettingLabel))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(mySqlHostDatabaseSettingTextField)
+                                            .addComponent(mySqlUserNameDatabaseSettingTextField)
+                                            .addComponent(mySqlPasswordDatabaseSettingTextField)
+                                            .addComponent(mySqlDatabaseNameDatabaseSettingTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(mySqlUserNameDatabaseSettingLabel)
+                                    .addComponent(mySqlPasswordDatabaseSettingLabel))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(displayLanguageSettingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(displayLanguageSettingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(3, 3, 3)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(databaseSettingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mySqlHostDatabaseSettingLabel)
+                    .addComponent(mySqlHostDatabaseSettingTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mySqlDatabaseNameDatabaseSettingTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mySqlDatabaseNameDatabaseSettingLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mySqlUserNameDatabaseSettingLabel)
+                    .addComponent(mySqlUserNameDatabaseSettingTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mySqlPasswordDatabaseSettingLabel)
+                    .addComponent(mySqlPasswordDatabaseSettingTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(displayLanguageSettingLabel)
+                    .addComponent(displayLanguageSettingComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveSettingsButton)
+                    .addComponent(cancelSettingButton))
+                .addContainerGap())
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void saveSettingsButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveSettingsButtonMouseClicked
+        try{
+            SettingsAction action = new SettingsAction();
+            action.saveSettings(this);
+            DialogUtil.displayDataSaveSuccessMessage();
+        }catch(Exception ex){
+            DialogUtil.displayErrorMessage(ex);
+            logger.info("Error -",ex);
+        }
+    }//GEN-LAST:event_saveSettingsButtonMouseClicked
+
+    private void mySqlUserNameDatabaseSettingTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mySqlUserNameDatabaseSettingTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mySqlUserNameDatabaseSettingTextFieldActionPerformed
+
+    private void mySqlDatabaseNameDatabaseSettingTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mySqlDatabaseNameDatabaseSettingTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mySqlDatabaseNameDatabaseSettingTextFieldActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelSettingButton;
+    private javax.swing.JLabel databaseSettingLabel;
+    private javax.swing.JComboBox<String> displayLanguageSettingComboBox;
+    private javax.swing.JLabel displayLanguageSettingLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel mySqlDatabaseNameDatabaseSettingLabel;
+    private javax.swing.JTextField mySqlDatabaseNameDatabaseSettingTextField;
+    private javax.swing.JLabel mySqlHostDatabaseSettingLabel;
+    private javax.swing.JTextField mySqlHostDatabaseSettingTextField;
+    private javax.swing.JLabel mySqlPasswordDatabaseSettingLabel;
+    private javax.swing.JPasswordField mySqlPasswordDatabaseSettingTextField;
+    private javax.swing.JLabel mySqlUserNameDatabaseSettingLabel;
+    private javax.swing.JTextField mySqlUserNameDatabaseSettingTextField;
+    private javax.swing.JButton saveSettingsButton;
+    // End of variables declaration//GEN-END:variables
+}
