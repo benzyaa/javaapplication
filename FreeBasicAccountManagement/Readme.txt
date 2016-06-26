@@ -30,6 +30,7 @@ mvn install:install-file -Dfile=datapicker-1.0.jar -DgroupId=com.qt -DartifactId
 
 For furthure information of Datapicker :  http://www.massapi.com/class/com/qt/datapicker/DatePicker.html
 
+-----------------------------------------------------------------------------------------------------------------------------
 
 โปรแกรมบริหารจัดการธุรกิจเบื้องต้น 
 FreeBasicAccountManagement V 1.0
@@ -42,6 +43,10 @@ FreeBasicAccountManagement V 1.0
 สงค์ใด ๆ ทางธุรกิจ ที่มีสาเหตุ จากการใช้โปรแกรมอย่างไม่ถูกต้อง
 
 มีข้อสงสัย ติดต่อ Poptorn Koomtong (benzyaa@gmail.com)
+
+สามารถ Download โปรแกรมได้ที่
+
+https://drive.google.com/file/d/0B3JtUvxiNTRENVg1bjBDTXNoNUk
 
 ความต้องการขั้นต่ำของระบบ
 1. ระบบฐานข้อมูล MySQL Database Version 5.5
