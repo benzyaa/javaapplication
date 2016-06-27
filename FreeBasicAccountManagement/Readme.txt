@@ -9,6 +9,8 @@ The complied Application is availiable in.
 
 https://drive.google.com/file/d/0B3JtUvxiNTRENVg1bjBDTXNoNUk
 
+https://github.com/benzyaa/javaapplication/releases/download/1.0/FreeBasicAccountManagement.rar
+
 Notice: The Contributor ( Poptorn Koomtong – Software developer of This application) 
 will not take responsibility about your business fault that caused by This application.
 
@@ -51,6 +53,8 @@ FreeBasicAccountManagement V 1.0
 สามารถ Download โปรแกรมได้ที่
 
 https://drive.google.com/file/d/0B3JtUvxiNTRENVg1bjBDTXNoNUk
+
+https://github.com/benzyaa/javaapplication/releases/download/1.0/FreeBasicAccountManagement.rar
 
 ความต้องการขั้นต่ำของระบบ
 1. ระบบฐานข้อมูล MySQL Database Version 5.5
