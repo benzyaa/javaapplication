@@ -16,6 +16,10 @@ Minimum System Requirements
 1. MySQL Database Version 5.5
 2. Java Runtime Environment Version 1.6
 
+The database of this application must be created by statements of the following file:
+
+https://raw.githubusercontent.com/benzyaa/javaapplication/master/FreeBasicAccountManagement/src/main/resources/FreeBasicAccountingManagementDatabase.sql
+
 For Developer
 1. Require NetBeans 6.1 IDE for the application development.
 2.  Apply Maven as dependency management and compiling tool.
@@ -52,6 +56,10 @@ https://drive.google.com/file/d/0B3JtUvxiNTRENVg1bjBDTXNoNUk
 1. ระบบฐานข้อมูล MySQL Database Version 5.5
 2. Java Runtime Environment Version 1.6
 
+ท่านจำเป็นต้องสร้างฐานข้อมูลใน MySQL เพื่อให้โปรแกรมสามารถทำงานได้ โดยใช้คำสั่ง SQL ในไฟล์นี้
+
+https://raw.githubusercontent.com/benzyaa/javaapplication/master/FreeBasicAccountManagement/src/main/resources/FreeBasicAccountingManagementDatabase.sql
+
 สำหรับนักพัฒนา
 1. โปรแกรมนี้ได้ถูกพัฒนาโดยใช้ NetBeans 6.1
 2. ใช้ Maven ในการจัดการ Library และคอมไฟล์โปรแกรม
@@ -59,8 +67,8 @@ https://drive.google.com/file/d/0B3JtUvxiNTRENVg1bjBDTXNoNUk
 package หากท่านต้องการไฟล์ zip ของไฟล์โปรแกรมที่ Compile แล้ว
 
 4. ในการ Compile โปรแกรม โดย Maven จำเป็นต้องมีการติดตั้ง Library Datapicker ก่อน ให้ดาวน์โหลด Library Datapicker
-ส่ามารถ ดาวน์โหลดได้ที่ https://github.com/benzyaa/javaapplication/blob/master/FreeBasicAccountManagement/datapicker-1.0.jar?raw=true แล
-ะ Run คำสั่ง Maven ดังต่อไปนี้
+ส่ามารถ ดาวน์โหลดได้ที่ https://github.com/benzyaa/javaapplication/blob/master/FreeBasicAccountManagement/datapicker-1.0.jar?raw=true และ 
+Run คำสั่ง Maven ดังต่อไปนี้
 
 mvn install:install-file -Dfile=datapicker-1.0.jar -DgroupId=com.qt -DartifactId=datapicker -Dversion=1.0 -Dpackaging=jar
 
